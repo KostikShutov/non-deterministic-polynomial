@@ -1,0 +1,13 @@
+version: '3'
+services:
+  python-ndp:
+    build: .
+    image: python-ndp
+    container_name: python-ndp-container
+    tty: true
+    privileged: true
+    volumes:
+      - ".:/code"
+    working_dir: /code
+    environment:
+      PYTHONPATH: /code

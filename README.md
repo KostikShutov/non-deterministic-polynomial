@@ -1,1 +1,1 @@
-# non-det-pol
+# Non-deterministic polynomial
