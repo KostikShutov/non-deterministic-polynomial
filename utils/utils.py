@@ -22,7 +22,6 @@ def generate_graph(number_of_nodes: int) -> any:
 
 def draw_graph(g: any, name: str) -> None:
     pos: any = nx.spring_layout(g)
-    nx.draw(g, pos, with_labels=True)
     labels: any = nx.get_edge_attributes(g, 'weight')
     nx.draw_networkx_edge_labels(g, pos, edge_labels=labels, font_size=5)
     plt.savefig('logs/' + name + '.png', dpi=500)

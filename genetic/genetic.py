@@ -14,10 +14,10 @@ def check(number, list_of_numbers):
 def nearest_neighbor_tour(graph):
     n = graph.number_of_nodes()
     if n == 0:
-        print('Empty graph.')
+        print('Empty graph')
         return
     if n == 1:
-        print('Graph is a single node.')
+        print('Graph is a single node')
         return
     best_tour = []
     best_cost = n * 11
@@ -37,7 +37,7 @@ def nearest_neighbor_tour(graph):
                         best_node = tmp_node
             already_vis.append(best_node)
             total_cost += best_weight
-        total_cost += graph[already_vis[len(already_vis) - 1]][i]['weight']  # cost to return at the first node
+        total_cost += graph[already_vis[len(already_vis) - 1]][i]['weight']  # Cost to return at the first node
         if total_cost <= best_cost:
             best_cost = total_cost
             best_tour = already_vis
@@ -51,13 +51,11 @@ def factorial(n):
     return ret
 
 
-# ----------------------------------------------------------------------------
-
-def fit(cand, graph):  # tour cost
+def fit(cand, graph):  # Tour cost
     fitness_function = 0
     n = graph.number_of_nodes()
     if n != len(cand):
-        print('Errore')
+        print('Error')
     for i in range(n - 1):
         fitness_function += graph[cand[i]][cand[i + 1]]['weight']
     fitness_function += graph[cand[n - 1]][cand[0]]['weight']
@@ -73,13 +71,13 @@ def probabilities(pop, graph):
     size_of_a_member = len(pop[0])
     n = graph.number_of_nodes()
     if n != size_of_a_member:
-        print('Errore')
+        print('Error')
     members = len(pop)
     tmp = []
     pro = []
     s = 0
     for cand in pop:
-        tmp_fit = 11 * (n + 1) - fit(cand, graph)  # since a good fit is small, take how much it is far from the max
+        tmp_fit = 11 * (n + 1) - fit(cand, graph)  # Since a good fit is small, take how much it is far from the max
         tmp.append(tmp_fit)
         s += tmp_fit
     if s == 0:
@@ -92,7 +90,7 @@ def probabilities(pop, graph):
     return pro
 
 
-def initialize_population(members, size_of_a_member):  # generate a random tour
+def initialize_population(members, size_of_a_member):  # Generate a random tour
     pop = []
     for i in range(members):
         tmp_member = []
@@ -131,7 +129,7 @@ def find_two_maximal_pos(lista, graph):
             pos_1 = i
             arr_1 = i + 1
     out_tmp_w = graph[lista[last_pos]][lista[0]]['weight']
-    if out_tmp_w > w1:  # check the last
+    if out_tmp_w > w1:  # Check the last
         w1 = out_tmp_w
         pos_1 = last_pos
         arr_1 = 0
@@ -144,7 +142,7 @@ def find_two_maximal_pos(lista, graph):
                 w2 = tmp_w
                 pos_2 = i
                 arr_2 = i + 1
-    if out_tmp_w > w2:  # check the last
+    if out_tmp_w > w2:  # Check the last
         if last_pos != pos_1 - 1 and last_pos != pos_1 and last_pos != pos_1 + 1 and pos_1 != 0:
             w2 = tmp_w
             pos_2 = last_pos
@@ -165,7 +163,7 @@ def single_swap_improve(pop, graph):
         quad = graph[node_1][node_2]['weight'] + graph[side_1][side_2]['weight']
         cross = graph[node_1][side_2]['weight'] + graph[node_2][side_1]['weight']
         if quad < normal:
-            if quad < cross:  # do a quad configuration member
+            if quad < cross:  # Do a quad configuration member
                 for i in range(len(mem)):
                     if i == arr_1:
                         new_mem.append(mem[pos_2])
@@ -173,7 +171,7 @@ def single_swap_improve(pop, graph):
                         new_mem.append(mem[arr_1])
                     else:
                         new_mem.append(mem[i])
-            else:  # do a cross configuration member
+            else:  # Do a cross configuration member
                 for i in range(len(mem)):
                     if i == arr_1:
                         new_mem.append(mem[arr_2])
@@ -181,7 +179,7 @@ def single_swap_improve(pop, graph):
                         new_mem.append(mem[arr_1])
                     else:
                         new_mem.append(mem[i])
-        elif cross < normal:  # cross
+        elif cross < normal:  # Cross
             for i in range(len(mem)):
                 if i == arr_1:
                     new_mem.append(mem[arr_2])
@@ -189,7 +187,7 @@ def single_swap_improve(pop, graph):
                     new_mem.append(mem[arr_1])
                 else:
                     new_mem.append(mem[i])
-        else:  # otherwise do not touch
+        else:  # Otherwise do not touch
             new_mem = mem
         new_pop.append(new_mem)
     return new_pop
@@ -215,7 +213,7 @@ def random_mutation(pop):
 
 def genetic(graph, members, ref_cost):
     n = graph.number_of_nodes()
-    # cross takes an even number of members
+    # Cross takes an even number of members
     if members % 2 != 0:
         members += 1
     population = initialize_population(members, n)  # members, size_of_a_member
@@ -225,7 +223,7 @@ def genetic(graph, members, ref_cost):
         cont += 1
         prob = probabilities(population, graph)
         population = selection(population, prob)
-        population = single_swap_improve(population, graph)  # recombine edges to obtain a lower cost
+        population = single_swap_improve(population, graph)  # Recombine edges to obtain a lower cost
         population = random_mutation(population)
 
         if cont % 50000 == 0:
@@ -235,18 +233,18 @@ def genetic(graph, members, ref_cost):
         if condition_to_stop:
             print('\nReached a good solution in', cont, 'iterations')
             print_pop(population)
-            print('cost of the solution:', a_fit_value)
+            print('Cost of the solution:', a_fit_value)
             cond = False
         elif cont >= 1000000:
             print('\nToo much iterations. Return the current solution.')
             print_pop(population)
-            print('cost of the solution:', a_fit_value)
+            print('Cost of the solution:', a_fit_value)
             cond = False
 
 
 g = generate_graph(18)
 draw_graph(g, 'genetic')
 best_tour, nearest_cost = nearest_neighbor_tour(g)
-print('Target sequence: ', best_tour)
-print('Cost of the solution: ', nearest_cost)
+print('Target sequence:', best_tour)
+print('Cost of the solution:', nearest_cost)
 genetic(g, 4, nearest_cost)

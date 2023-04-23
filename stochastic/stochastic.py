@@ -173,8 +173,8 @@ def simulation(num_of_node, side_length=100):
     network = Network(num_of_node, side_length)
     edges, cost, run_time = run_trail(network)
 
-    print("Random mcts has average cost of {:.2f}".format(cost))
-    print('Path: ', edges)
+    print('Random mcts has average cost of {:.2f}'.format(cost))
+    print('Path:', edges)
 
 
 simulation(30)

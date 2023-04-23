@@ -2,11 +2,11 @@ import networkx as nx
 from utils.utils import generate_graph, draw_graph
 
 
-def greedy(graph: any, weight="weight", source=None) -> any:
+def greedy(graph: any, weight='weight', source=None) -> any:
     N = len(graph) - 1
 
     if any(len(nbrdict) - (n in nbrdict) != N for n, nbrdict in graph.adj.items()):
-        raise nx.NetworkXError("Graph must be a complete graph.")
+        raise nx.NetworkXError('Graph must be a complete graph')
 
     if source is None:
         source = nx.utils.arbitrary_element(graph)
@@ -34,4 +34,4 @@ def greedy(graph: any, weight="weight", source=None) -> any:
 graph = generate_graph(18)
 draw_graph(graph, 'greedy')
 path = greedy(graph)
-print('Path: ', path)
+print('Path:', path)
