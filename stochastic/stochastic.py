@@ -2,8 +2,7 @@ import copy
 import time
 import random
 import numpy as np
-import networkx as nx
-from utils.utils import draw_graph
+from utils.utils import generate_graph, draw_graph
 
 
 class Network:
@@ -19,16 +18,7 @@ class Network:
         self.positions = {key: tuple(node) for key, node in enumerate(nodes)}
 
         # Set up the graph
-        self.graph = nx.Graph()
-        self.graph.add_nodes_from([i for i in range(self.num_of_node)])
-
-        # Set up edge and edge weight
-        for i in range(self.num_of_node - 1):
-            d = nodes[i] - nodes[i + 1:, :]
-            weight = (d[:, 0] ** 2 + d[:, 1] ** 2) ** 0.5
-            weighted_edges = [(i, i + j, weight[j - 1]) for j in range(1, self.num_of_node - i)]
-            self.graph.add_weighted_edges_from(weighted_edges)
-
+        self.graph = generate_graph(self.num_of_node)
         draw_graph(self.graph, 'stochastic')
 
 
