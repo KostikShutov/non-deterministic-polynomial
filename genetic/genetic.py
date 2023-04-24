@@ -242,9 +242,14 @@ def genetic(graph, members, ref_cost):
             cond = False
 
 
-g = generate_graph(18)
-draw_graph(g, 'genetic')
-best_tour, nearest_cost = nearest_neighbor_tour(g)
-print('Target sequence:', best_tour)
-print('Cost of the solution:', nearest_cost)
-genetic(g, 4, nearest_cost)
+def simulation(graph):
+    best_tour, nearest_cost = nearest_neighbor_tour(graph)
+    print('Target sequence:', best_tour)
+    print('Cost of the solution:', nearest_cost)
+    genetic(graph, 4, nearest_cost)
+
+
+if __name__ == "__main__":
+    graph = generate_graph(18)
+    draw_graph(graph, 'genetic')
+    simulation(graph)

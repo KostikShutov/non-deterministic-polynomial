@@ -6,20 +6,9 @@ from utils.utils import generate_graph, draw_graph
 
 
 class Network:
-    def __init__(self, num_of_node, side_length):
-        self.num_of_node = num_of_node
-        self.side_length = side_length
-        self.initialize_graph()
-
-    def initialize_graph(self):
-        # Generate random node position
-        nodes = np.random.randint(self.side_length, size=self.num_of_node * 2)
-        nodes = nodes.reshape(self.num_of_node, 2)
-        self.positions = {key: tuple(node) for key, node in enumerate(nodes)}
-
-        # Set up the graph
-        self.graph = generate_graph(self.num_of_node)
-        draw_graph(self.graph, 'stochastic')
+    def __init__(self, graph):
+        self.graph = graph
+        self.num_of_node = self.graph.number_of_nodes()
 
 
 class Node:
@@ -159,12 +148,14 @@ def run_trail(network):
     return edges, cost, run_time
 
 
-def simulation(num_of_node, side_length=100):
-    network = Network(num_of_node, side_length)
+def simulation(graph):
+    network = Network(graph)
     edges, cost, run_time = run_trail(network)
-
     print('Random mcts has average cost of {:.2f}'.format(cost))
     print('Path:', edges)
 
 
-simulation(30)
+if __name__ == "__main__":
+    graph = generate_graph(18)
+    draw_graph(graph, 'stochastic')
+    simulation(graph)

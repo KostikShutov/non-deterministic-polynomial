@@ -31,7 +31,12 @@ def greedy(graph: any, weight='weight', source=None) -> any:
     return cycle
 
 
-graph = generate_graph(18)
-draw_graph(graph, 'greedy')
-path = greedy(graph)
-print('Path:', path)
+def simulation(graph):
+    path = greedy(graph)
+    print('Path:', path)
+
+
+if __name__ == "__main__":
+    graph = generate_graph(18)
+    draw_graph(graph, 'greedy')
+    simulation(graph)
