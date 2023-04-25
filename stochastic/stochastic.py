@@ -94,7 +94,7 @@ class MCTS:
         cost += path_edges[-1][2]['weight']
         return path_edges, cost
 
-    def run(self, num_of_expand, num_of_simulate, C):
+    def run(self, num_of_expand, num_of_simulate):
         while True:
             current_node = self.select(self.root)
 
@@ -142,7 +142,7 @@ class RandomMCTS(MCTS):
 def run_trail(network):
     start = time.time()
     random_mcts = RandomMCTS(network)
-    edges, cost = random_mcts.run(50, 20, 100)
+    edges, cost = random_mcts.run(50, 20)
     run_time = time.time() - start
 
     return edges, cost, run_time
