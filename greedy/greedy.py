@@ -19,21 +19,25 @@ def greedy(graph: any, weight='weight', source=None) -> any:
     nodeset.remove(source)
     cycle = [source]
     next_node = source
+    cost = 0
 
     while nodeset:
         nbrdict = graph[next_node]
+        prev_node = next_node
         next_node = min(nodeset, key=lambda n: nbrdict[n].get(weight, 1))
+        cost += graph.edges[prev_node, next_node]['weight']
         cycle.append(next_node)
         nodeset.remove(next_node)
 
     cycle.append(cycle[0])
 
-    return cycle
+    return cycle, cost
 
 
 def simulation(graph):
-    path = greedy(graph)
+    path, cost = greedy(graph)
     print('Path:', path)
+    print('Cost:', cost)
 
 
 if __name__ == "__main__":

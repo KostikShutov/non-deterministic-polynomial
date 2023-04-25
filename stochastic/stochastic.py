@@ -151,8 +151,8 @@ def run_trail(network):
 def simulation(graph):
     network = Network(graph)
     edges, cost, run_time = run_trail(network)
+    print('Path:', [e[0] for e in edges] + [edges[0][0]])
     print('Random mcts has average cost of {:.2f}'.format(cost))
-    print('Path:', edges)
 
 
 if __name__ == "__main__":
