@@ -5,12 +5,12 @@ from stochastic.stochastic import simulation as stochastic_simulation
 from utils.utils import generate_graph, draw_graph
 
 
-def createDirectory(directory: str) -> None:
+def create_directory(directory: str) -> None:
     if not os.path.exists(directory):
         os.makedirs(directory)
 
 
-createDirectory('logs')
+create_directory('logs')
 graph = generate_graph(18)
 draw_graph(graph, 'main')
 
