@@ -1,6 +1,7 @@
 import random
 import networkx as nx
 import matplotlib.pyplot as plt
+from datetime import datetime
 
 
 def generate_graph(number_of_nodes: int) -> any:
@@ -24,4 +25,5 @@ def draw_graph(g: any, name: str) -> None:
     pos: any = nx.spring_layout(g)
     labels: any = nx.get_edge_attributes(g, 'weight')
     nx.draw_networkx_edge_labels(g, pos, edge_labels=labels, font_size=5)
-    plt.savefig('logs/' + name + '.png', dpi=500)
+    time: str = datetime.now().strftime('%Y-%m-%d_%H:%M:%S')
+    plt.savefig('logs/' + time + '_' + name + '.png', dpi=500)

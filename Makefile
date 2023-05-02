@@ -17,3 +17,11 @@ d-restart:
 .PHONY: d-python
 d-python:
 	docker-compose exec python-ndp bash
+
+###########
+# Program #
+###########
+
+.PHONY: p-run
+p-run:
+	docker-compose run --rm -w /code python-ndp python main.py

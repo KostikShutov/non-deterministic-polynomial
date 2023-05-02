@@ -1,9 +1,7 @@
 # Non-deterministic polynomial
 
-## Запуск
+## Запуск программы
 
 ```bash
-make d-up d-python # Из корня проекта
-mkdir logs # Если не создана
-python main.py
+make p-run
 ```
