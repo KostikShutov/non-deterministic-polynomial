@@ -3,5 +3,5 @@
 ## Запуск программы
 
 ```bash
-make p-run
+make run
 ```

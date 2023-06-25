@@ -22,6 +22,6 @@ d-python:
 # Program #
 ###########
 
-.PHONY: p-run
-p-run:
+.PHONY: run
+run:
 	docker-compose run --rm -w /code python-ndp python main.py
