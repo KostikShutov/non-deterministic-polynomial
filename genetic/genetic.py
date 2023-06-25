@@ -231,12 +231,12 @@ def genetic(graph, members, ref_cost):
             print_pop(population)
         condition_to_stop, a_fit_value = control_and_return(population, graph, ref_cost)
         if condition_to_stop:
-            print('\nReached a good solution in', cont, 'iterations')
+            print('Reached a good solution in', cont, 'iterations')
             print_pop(population)
             print('Cost of the solution:', a_fit_value)
             cond = False
         elif cont >= 1000000:
-            print('\nToo much iterations. Return the current solution.')
+            print('Too much iterations. Return the current solution.')
             print_pop(population)
             print('Cost of the solution:', a_fit_value)
             cond = False
