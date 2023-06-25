@@ -116,11 +116,6 @@ class MCTS:
 
         return self.calculate_path_edges(current_node.path)
 
-
-class RandomMCTS(MCTS):
-    def __init__(self, network):
-        MCTS.__init__(self, network)
-
     def simulate(self, node):
         # Setup
         unvisited_nodes = copy.deepcopy(node.unvisited_nodes)
@@ -141,7 +136,7 @@ class RandomMCTS(MCTS):
 
 def run_trail(network):
     start = time.time()
-    random_mcts = RandomMCTS(network)
+    random_mcts = MCTS(network)
     edges, cost = random_mcts.run(50, 20)
     run_time = time.time() - start
 
