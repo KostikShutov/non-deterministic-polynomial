@@ -1,14 +1,6 @@
 import copy
-import time
 import random
 import numpy as np
-from utils.utils import generate_graph, draw_graph
-
-
-class Network:
-    def __init__(self, graph):
-        self.graph = graph
-        self.num_of_node = self.graph.number_of_nodes()
 
 
 class Node:
@@ -31,9 +23,9 @@ class Node:
 
 
 class MCTS:
-    def __init__(self, network):
-        self.num_of_node = network.num_of_node
-        self.graph = network.graph
+    def __init__(self, graph):
+        self.num_of_node = graph.number_of_nodes()
+        self.graph = graph
         self.root = Node(None, 'root', [], list(self.graph.nodes), 0)
 
     def select(self, node):
@@ -134,23 +126,9 @@ class MCTS:
         return cost
 
 
-def run_trail(network):
-    start = time.time()
-    random_mcts = MCTS(network)
+def stochastic(graph: any) -> any:
+    random_mcts = MCTS(graph)
     edges, cost = random_mcts.run(50, 20)
-    run_time = time.time() - start
+    path = [e[0] for e in edges] + [edges[0][0]]
 
-    return edges, cost, run_time
-
-
-def simulation(graph):
-    network = Network(graph)
-    edges, cost, run_time = run_trail(network)
-    print('Path:', [e[0] for e in edges] + [edges[0][0]])
-    print('Cost: {:.2f}'.format(cost))
-
-
-if __name__ == "__main__":
-    graph = generate_graph(18)
-    draw_graph(graph, 'stochastic')
-    simulation(graph)
+    return path, cost,

@@ -3,5 +3,5 @@
 ## Запуск программы
 
 ```bash
-make run
+make clear run
 ```

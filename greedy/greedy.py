@@ -1,5 +1,4 @@
 import networkx as nx
-from utils.utils import generate_graph, draw_graph
 
 
 def greedy(graph: any, weight='weight', source=None) -> any:
@@ -32,15 +31,3 @@ def greedy(graph: any, weight='weight', source=None) -> any:
     cycle.append(cycle[0])
 
     return cycle, cost
-
-
-def simulation(graph):
-    path, cost = greedy(graph)
-    print('Path:', path)
-    print('Cost:', cost)
-
-
-if __name__ == "__main__":
-    graph = generate_graph(18)
-    draw_graph(graph, 'greedy')
-    simulation(graph)

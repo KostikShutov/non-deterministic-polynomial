@@ -22,6 +22,10 @@ d-python:
 # Program #
 ###########
 
+.PHONY: clear
+clear:
+	docker-compose run --rm -w /code python-ndp rm -rf logs
+
 .PHONY: run
 run:
 	docker-compose run --rm -w /code python-ndp python main.py
