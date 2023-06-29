@@ -1,3 +1,4 @@
+import sys
 import time
 from greedy.greedy import greedy
 from stochastic.stochastic import stochastic
@@ -18,7 +19,7 @@ def print_info(__start_time: float, __path: list, __cost: float, __graph: any, _
 
 
 create_directory('logs')
-graph = generate_graph(6)
+graph = generate_graph(int(sys.argv[1]) if len(sys.argv) > 1 else 6)
 draw_graph(graph.copy(), 'graph')
 
 print('\n----Greedy----')

@@ -28,4 +28,4 @@ clear:
 
 .PHONY: run
 run:
-	docker-compose run --rm -w /code python-ndp python main.py
+	docker-compose run --rm -w /code python-ndp python main.py ${c}
